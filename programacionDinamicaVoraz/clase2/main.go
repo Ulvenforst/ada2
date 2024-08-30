@@ -16,5 +16,8 @@ func main() {
 	fmt.Printf("Length of LCS: %d\n", c[m][n])
 	fmt.Print("LCS: ")
 	leastCommonSubsequence.PrintLCS(b, X, m, n)
-	fmt.Println()
+  fmt.Println("")
+  for i := 1; i < len(b); i++ {
+    fmt.Printf("%v\n", b[i])
+  }
 }

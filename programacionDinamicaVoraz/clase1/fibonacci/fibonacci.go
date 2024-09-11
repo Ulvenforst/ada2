@@ -1,51 +1,40 @@
 // Description: Fibonacci sequence implementation using different approaches.
 package fibonacci
 
-const (
-    UNKNOWN = -1
-    MAXN    = 92
-)
-
-var f [MAXN + 1]int64
-
-// Recursive Fibonacci
 func FibR(n int) int64 {
   if n == 0 {
     return 0
-  }
-
-  if n == 1 {
+  } else if n == 1 {
     return 1
   }
 
   return FibR(n-1) + FibR(n-2)
 }
 
-// Caching Fibonacci
-func fibC(n int) int64 {
-  if f[n] == UNKNOWN {
-    f[n] = fibC(n-1) + fibC(n-2)
+func FibC(n int, f []int64) int64 {
+  if f[n] != -1 {
+    return f[n]
   }
-
+  f[n] = FibC(n-1, f) + FibC(n-2, f)
   return f[n]
 }
 
 func FibCDriver(n int) int64 {
+  f := make([]int64, n+1)
   f[0] = 0
   f[1] = 1
-
   for i := 2; i <= n; i++ {
-    f[i] = UNKNOWN
+    f[i] = -1 
   }
 
-  return fibC(n)
+  return FibC(n, f)
 }
 
-// Linear fibonacci
-func FibDp(n int) int64 {
+func FibDP(n int) int64 {
+  f := make([]int64, n+1)
   f[0] = 0
   f[1] = 1
-
+  
   for i := 2; i <= n; i++ {
     f[i] = f[i-1] + f[i-2]
   }
@@ -53,9 +42,8 @@ func FibDp(n int) int64 {
   return f[n]
 }
 
-// Ultimate version
 func FibUltimate(n int) int64 {
-  back2, back1 := int64(0), int64(1)
+  var back1, back2 int64 = 1, 0
   var next int64
 
   if n == 0 {
@@ -70,4 +58,3 @@ func FibUltimate(n int) int64 {
 
   return back1 + back2
 }
-

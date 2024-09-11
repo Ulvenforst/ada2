@@ -9,7 +9,7 @@ import (
 
 func main() {
   start := time.Now()
-  // var fibNumber int64 = fibonacci.FibR(50)
+  // var fibNumber int64 = fibonacci.FibR(4)
   // var fibNumber int64 = fibonacci.FibCDriver(50)
   // var fibNumber int64 = fibonacci.FibDp(50)
   var fibNumber int64 = fibonacci.FibUltimate(50)
